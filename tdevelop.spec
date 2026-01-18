@@ -65,6 +65,7 @@ BuildRequires:	trinity-tde-cmake >= %{tde_version}
 
 BuildRequires:	fdupes
 BuildRequires:	desktop-file-utils
+BuildRequires:  make
 
 Requires:	perl
 Requires:	tqt3-designer >= 3.5.0
