@@ -6,12 +6,6 @@
 #  Having KDE libraries may cause FTBFS here !
 
 # TDE variables
-%define tde_epoch 2
-%if "%{?tde_version}" == ""
-%define tde_version 14.1.5
-%endif
-%define pkg_rel 2
-
 %define tde_pkg tdevelop
 %define tde_prefix /opt/trinity
 
@@ -27,18 +21,18 @@
 
 Name:		trinity-%{tde_pkg}
 Summary:	Integrated Development Environment for C++/C
-Version:	%{tde_version}
-Release:	%{?!preversion:%{pkg_rel}}%{?preversion:0_%{preversion}}%{?dist}
+Version:	14.1.5
+Release:	3
 Group:		Development/Tools
 URL:		http://www.trinitydesktop.org/
 
 License:	GPLv2+
 
 
-Source0:		https://mirror.ppa.trinitydesktop.org/trinity/releases/R%{tde_version}/main/core/%{tarball_name}-%{version}%{?preversion:~%{preversion}}.tar.xz
+Source0:		https://mirror.ppa.trinitydesktop.org/trinity/releases/R%{version}/main/core/%{tarball_name}-%{version}.tar.xz
 Source1:	%{name}-rpmlintrc
 
-Requires:	%{name}-libs = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:	%{name}-libs = %{EVRD}
 
 BuildSystem:    cmake
 BuildOption:    -DCMAKE_BUILD_TYPE="RelWithDebInfo"
@@ -52,14 +46,14 @@ BuildOption:    -DWITH_GCC_VISIBILITY=%{!?with_clang:ON}%{?with_clang:OFF}
 
 BuildRequires:	tqt3-apps-devel >= 3.5.0
 BuildRequires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
-BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
-BuildRequires:	trinity-tdebase-devel >= %{tde_version}
-BuildRequires:	trinity-tdesdk-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{version}
+BuildRequires:	trinity-tdebase-devel >= %{version}
+BuildRequires:	trinity-tdesdk-devel >= %{version}
 
-Obsoletes:	trinity-kdevelop < %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:	trinity-kdevelop = %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:	trinity-kdevelop < %{EVRD}
+Provides:	trinity-kdevelop = %{EVRD}
 
-BuildRequires:	trinity-tde-cmake >= %{tde_version}
+BuildRequires:	trinity-tde-cmake >= %{version}
 
 %{!?with_clang:BuildRequires:	gcc-c++}
 
@@ -484,10 +478,10 @@ individual needs.
 %package devel
 Summary: Development files for %{name}
 Group:		Development/Libraries/Other
-Requires: %{name}-libs = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires: %{name}-libs = %{EVRD}
 
-Obsoletes:	trinity-kdevelop-devel < %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:	trinity-kdevelop-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:	trinity-kdevelop-devel < %{EVRD}
+Provides:	trinity-kdevelop-devel = %{EVRD}
 
 %description devel
 This package contains the development files for tdevelop.
@@ -503,12 +497,12 @@ This package contains the development files for tdevelop.
 %package libs
 Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
-Requires: trinity-tdelibs >= %{tde_version}
+Requires: trinity-tdelibs >= %{version}
 # include to be paranoid, installing libs-only is still mostly untested -- Rex
-Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires: %{name} = %{EVRD}
 
-Obsoletes:	trinity-kdevelop-libs < %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:	trinity-kdevelop-libs = %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:	trinity-kdevelop-libs < %{EVRD}
+Provides:	trinity-kdevelop-libs = %{EVRD}
 
 %description libs
 This package contains the libraries needed for the tdevelop programs.
