@@ -45,7 +45,7 @@ BuildOption:    -DWITH_VCS_ALL=OFF -DBUILD_ALL=ON
 BuildOption:    -DWITH_GCC_VISIBILITY=%{!?with_clang:ON}%{?with_clang:OFF}
 
 BuildRequires:	tqt3-apps-devel >= 3.5.0
-BuildRequires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
+BuildRequires:	trinity-arts-devel >= 1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{version}
 BuildRequires:	trinity-tdebase-devel >= %{version}
 BuildRequires:	trinity-tdesdk-devel >= %{version}
@@ -63,7 +63,7 @@ BuildRequires:  make
 
 Requires:	perl
 Requires:	tqt3-designer >= 3.5.0
-Requires:	libtqt3-mt-devel >= 3.5.0
+Requires:	%{_lib}tqt3-mt-devel >= 3.5.0
 Requires:	gettext
 Requires:	ctags
 
